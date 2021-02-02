@@ -1,0 +1,58 @@
+
+<br><br><br>
+<p-accordion>
+  <p-accordionTab header="{{organisme.nom}}">
+    <div class="image-container">
+      <img [src]=organisme.imageOrganisme class="product-image"/>
+</div>
+<div class="organisme-container">
+  <h3 class="p-mb-2">{{organisme.email}}</h3>
+  <h3 class="p-mb-2">{{organisme.gouvernerat}}</h3>
+  <h3 class="p-mb-2">{{organisme.adresse}}</h3>
+</div>
+  </p-accordionTab>
+</p-accordion>
+
+
+<div class="liste">
+<p-orderList [value]="offres" [listStyle]="{'height':'auto'}" header="liste des offres stage" filterBy="titreOffre" filterPlaceholder="Filtrer par titre" [dragdrop]="true">
+  <ng-template let-offre pTemplate="item">
+      <div class="product-item">
+        <div class="image-container">
+          <img src="../../assets/stage1.png"  class="product-image" />
+  </div>
+          <div class="product-list-detail">
+              <h3 class="p-mb-2">{{offre.titreOffre}}</h3>
+              <i class="pi pi-tag product-category-icon"></i>
+              <span class="product-category">{{offre.description}}</span><br>
+              <h4 class="product-category1">Environnements Techniques:</h4>
+              <span class="product-category">{{offre.languages}}</span>
+          </div>
+          <div class="product-list-action">
+            <button pButton pRipple (click)="showPositionDialog('top')"  type="button" icon="pi pi-check" class="p-button-rounded p-button-success p-button-outlined"></button>
+            <h4 class="p-mb-2">{{offre.niveau}}</h4>
+              <h4 class="p-mb-2">{{offre.duree}}</h4>
+          </div>
+      </div>
+  </ng-template>
+</p-orderList>
+</div>
+<p-dialog  [(visible)]="displayPosition" [position]="position" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <div class="form-bg">
+
+      <h3> Postuler Maintenant! </h3>
+
+      <div class="form">
+          <input   id="emailsociete" disabled="true" value={{organisme.email}} maxlength="50" name="form-name" type="text">
+          <input placeholder="votre email" maxlength="9" name="form-phone" type="text">
+          <input  maxlength="50" name="form-city" type="file">
+
+     <p-button> postuler</p-button>
+
+      </div>
+
+
+  </div>
+
+</p-dialog>

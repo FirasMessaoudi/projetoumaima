@@ -1,0 +1,85 @@
+<div class="wrapper">
+	<div class="a">
+			<div class="sidebar">
+	<div class="logo">
+		<a href="#">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="269" height="79" viewBox="0 0 269 79">
+				<defs>
+					<filter id="BG" x="0" y="0" width="269" height="79" filterUnits="userSpaceOnUse">
+						<feOffset dy="2" input="SourceAlpha" />
+						<feGaussianBlur stdDeviation="1.5" result="blur" />
+						<feFlood flood-opacity="0.051" />
+						<feComposite operator="in" in2="blur" />
+						<feComposite in="SourceGraphic" />
+					</filter>
+				</defs>
+				<g id="Logo" transform="translate(4.5 2.5)">
+
+					<text id="Logo-2" data-name="Logo" transform="translate(40 39)" fill="#fff" font-size="15" font-family="SourceSansPro-Bold, Source Sans Pro" font-weight="700" letter-spacing="0.2em">
+						<tspan x="0" y="0">ADMIN PAGE</tspan>
+					</text>
+				</g>
+			</svg>
+
+		</a>
+	</div> <!-- class="logo" -->
+
+	<nav class="menu">
+		<ul>
+			<li>
+				<a [routerLink]="['jury']">
+
+					Gestion des membres de Jury</a>
+			</li>
+			<li class="active">
+				<a [routerLink]="['adminhome']">
+
+					Page d'acceuil</a>
+			</li>
+			<li>
+				<a href="#Inbox">
+
+					Gestion des structures d'accueil</a>
+			</li>
+
+			<li>
+				<a [routerLink]="['suiviRapport']">
+
+					Suivi l'état des rapports
+				</a>
+			</li>
+		</ul>
+	</nav>
+</div> <!-- class="sidebar" -->
+	</div> <!-- class="a" -->
+
+	<div class="b">
+		<div class="container">
+			<div class="box">
+				<ul>
+					<li class="comments">
+						<a href="#">
+							<i class="fas fa-comments"></i>
+						</a>
+					</li>
+
+					<li class="username">
+
+						<a href="#">
+							John Doe <i class="pi pi-user"></i>
+						</a>
+						<ul>
+							<li><a href="#">Logout</a></li>
+						</ul>
+					</li>
+					<li class="userphoto">
+						<i class="fas fa-user-circle"></i>
+					</li>
+				</ul>
+			</div> <!-- class="box" -->
+		</div> <!-- class="container" -->
+	</div> <!-- class="b" -->
+ <!-- class="e" -->
+
+ <router-outlet></router-outlet>
+	</div> <!-- class="wrapper" -->

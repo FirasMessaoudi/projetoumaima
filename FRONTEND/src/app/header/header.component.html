@@ -1,0 +1,11 @@
+<p-menubar *ngIf="!isLoggedIn">
+  <ng-template pTemplate="start">
+    <a [routerLink]="['']"><img src="../../assets/sesame1.png" height="50" width="250"/></a>
+
+  </ng-template>
+  <ng-template pTemplate="end">
+    <p-menubar styleClass="menucus" [model]="items"></p-menubar>
+  </ng-template>
+</p-menubar>
+<router-outlet></router-outlet>
+<app-footer *ngIf="!isLoggedIn"></app-footer>

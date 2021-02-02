@@ -1,0 +1,68 @@
+<div class="card">
+  <h2 style="color: lightskyblue;">Liste Des Rapports</h2>
+  <p-table #dt2 [value]="listesRapports" dataKey="id"
+      [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,50]" [loading]="loading" styleClass="p-datatable-customers"
+      [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [globalFilterFields]="['codeRapport','specialite','titre']">
+      <ng-template pTemplate="caption">
+          <div class="p-d-flex">
+
+          </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+
+              <th>Specialite</th>
+              <th>Type Du Projet</th>
+              <th>Titre Du Projet</th>
+              <th>mot clés</th>
+              <th style="width: 6rem"></th>
+          </tr>
+          <tr>
+
+              <th>
+                <p-columnFilter type="text" field="specialite"></p-columnFilter>
+              </th>
+              <th>
+                <p-columnFilter type="text" field="typeRapport"></p-columnFilter>
+              </th>
+              <th>
+                <p-columnFilter type="text" field="titre"></p-columnFilter>
+              </th>
+              <th>
+                <p-columnFilter type="text" field="titre"></p-columnFilter>
+              </th>
+              <th></th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rapport>
+          <tr>
+
+              <td>
+
+                  <span class="image-text">{{rapport.specialite}}</span>
+              </td>
+              <td>
+
+                <span class="image-text">{{rapport.typeRapport}}</span>
+            </td>
+              <td>
+                <span class="image-text">{{rapport.titre}}</span>
+              </td>
+              <td>
+                <span class="image-text">{{rapport.titre}}</span>
+              </td>
+              <td>
+
+                <button pButton pRipple type="button" icon="pi pi-download" class="p-button-rounded p-button-success"></button>
+              </td>
+
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+          <tr>
+              <td colspan="5">No rapports found.</td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>

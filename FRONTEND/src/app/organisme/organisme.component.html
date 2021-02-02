@@ -1,0 +1,86 @@
+<h3 style="color: blue;"> listes des organismes d'acceuil</h3>
+<div class="card">
+  <p-dataView
+  #dv [value]="organismes" [paginator]="true" [rows]="5" filterBy="nom"
+        [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+      <ng-template pTemplate="header">
+          <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+              <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                  <i class="pi pi-search"></i>
+                  <input type="search" pInputText placeholder="Search by Name">
+              </span>
+              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+          </div>
+      </ng-template>
+      <ng-template let-organisme pTemplate="listItem">
+          <div class="p-col-12">
+              <div class="product-list-item">
+                  <img [src]=organisme.imageOrganisme>
+                  <div class="product-list-detail">
+                      <div class="product-name">{{organisme.nom}}</div>
+                      <div class="product-description">{{organisme.adresse}}</div>
+
+                      <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{organisme.specialite}}</span>
+                  </div>
+                  <div class="product-list-action">
+
+                      <p-button icon="pi pi-plus" label="details"  [routerLink]="['/detail-organisme', organisme.id]"></p-button>
+
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+      <ng-template let-organisme pTemplate="gridItem">
+          <div class="p-col-12 p-md-4">
+
+              <div class="product-grid-item card">
+                  <div class="product-grid-item-top">
+                      <div>
+                          <i class="pi pi-tag product-category-icon"></i>
+                          <span class="product-nom">{{organisme.nom}}</span>
+                      </div>
+                  </div>
+                  <div class="product-grid-item-content">
+                      <img [src]=organisme.imageOrganisme/>
+                      <div class="product-name">{{organisme.nom}}</div>
+                      <div class="product-description">{{organisme.adresse}}</div>
+                  </div>
+                  <div class="product-grid-item-bottom">
+                      <span class="product-price">{{organisme.specialite}}</span>
+                      <p-button icon="pi pi-plus"  (click)="showDialog(organisme.id)" ></p-button>
+                  </div>
+              </div>
+
+          </div>
+      </ng-template>
+  </p-dataView>
+</div>
+<p-dialog header="{{organismeAcceuil?.nom}}" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <h3>{{organismeAcceuil?.adresse}}</h3>
+  <h5>{{organismeAcceuil?.email}}</h5>
+  <p>Listes des Offres</p>
+
+  <p-table [value]="offres" [scrollable]="true" scrollHeight="flex">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Titre offre</th>
+            <th>niveau</th>
+            <th>duree</th>
+            <th>languages</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-offre>
+        <tr>
+            <td>{{offre.titreOffre}}</td>
+            <td>{{offre.niveau}}</td>
+            <td>{{offre.duree}}</td>
+            <td>{{offre.languages}}</td>
+            <td><button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-success p-button-outlined"></button></td>
+        </tr>
+    </ng-template>
+</p-table>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="display=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,19 @@
+<div id="bg">
+  <div class="module">
+    <ul>
+      <li class="tab activeTab"><img src="https://i.imgur.com/Fk1Urva.png" alt="" class="icon"/></li>
+      <li class="tab" ><img src="https://i.imgur.com/ZsRgIDD.png" alt="" class="icon"/></li>
+      <li class="tab" ><img src="https://i.imgur.com/34Q50wo.png" alt="" class="icon"/></li>
+      <li class="tab" ><img src="https://i.imgur.com/LCCJ06E.png" alt="" class="icon"/></li>
+    </ul>
+
+    <form class="form" [formGroup]="userForm">
+      <input type="text" formControlName="nom" id="nom"placeholder="Nom" class="textbox" />
+      <input type="text" formControlName="prenom" id="prenom" placeholder="Prenom" class="textbox" />
+      <input type="text" formControlName="email" id="email" placeholder="Adresse Email" class="textbox" />
+      <input type="password" formControlName="password" id="password" placeholder="mot de passe" class="textbox" />
+      <input type="text"formControlName="niveau" id="niveau"  placeholder="niveau étude" class="textbox" />
+      <input type="button" value="Enregistrer"  (click)="addUser()"class="button" />
+    </form>
+  </div>
+</div>
