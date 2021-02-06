@@ -47,13 +47,14 @@ public class UploadController {
     }
 
 
-    @PostMapping(value = "/files/{filename:.+}")
+    @PostMapping(value = "/files/")
     @ResponseBody
-    public ResponseEntity<Resource> getFile(@RequestBody String filename) {
-        Resource file = storageService.loadFile(filename);
+    public ResponseEntity<byte[]> getFile(@RequestBody String filename) {
+        byte[] b = storageService.loadfile(filename);
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
-                .body(file);
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
+                .body(b);
+
     }
 
 }

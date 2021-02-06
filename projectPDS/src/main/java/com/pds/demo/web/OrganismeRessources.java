@@ -4,13 +4,18 @@ package com.pds.demo.web;
 import com.pds.demo.domains.OffreStage;
 import com.pds.demo.domains.Organisme;
 
+import com.pds.demo.email.Mail;
+import com.pds.demo.email.SendMail;
 import com.pds.demo.services.OrganismeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +29,10 @@ public class OrganismeRessources {
     private static final String ENTITY_NAME = "organisme";
     @Autowired
     private OrganismeService organismeService;
+    @Autowired
+    private SendMail sendMail;
+    @Autowired
+    private Environment e;
 
 
     @PostMapping("/ajout")
@@ -68,5 +77,13 @@ public class OrganismeRessources {
         log.debug("REST request to get organisme : {}", id);
         Optional<Organisme> organisme = Optional.of(organismeService.findOne(id).get());
         return organisme;
+    }
+    @PostMapping("/sendEmail")
+    public void sendEmail( @RequestParam("path") String path, @RequestParam("email") String email,@RequestParam("sender") String sender) throws IOException, MessagingException {
+        Mail mail = new Mail();
+        mail.setFrom(e.getProperty("spring.mail.username"));
+        mail.setSubject("Demande de candidature");
+        mail.setTo(email);
+        sendMail.sendSimpleMessage(mail,path,sender);
     }
 }

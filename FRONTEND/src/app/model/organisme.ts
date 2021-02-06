@@ -1,6 +1,6 @@
 export class Organisme {
   id?: number;
-  email?: string;
+  email: string='';
   codePostal?: string;
   gouvernerat?: string;
   imageOrganisme?: string;

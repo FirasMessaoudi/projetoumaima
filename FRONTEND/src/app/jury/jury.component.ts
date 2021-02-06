@@ -4,6 +4,7 @@ import { Jury } from '../model/jury';
 import { JuryServiceService } from '../service/jury-service.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-jury',
@@ -36,7 +37,7 @@ export class JuryComponent implements OnInit {
 
   listesJurys!: Jury[];
   constructor(private juryService:JuryServiceService, private confirmationService:ConfirmationService,
-    private messageService:MessageService) { }
+    private messageService:MessageService, private toaster: ToastrService) { }
 
 
 
@@ -121,13 +122,14 @@ addJury(){
   this.juryService.deleteJury(this.idJury.id).subscribe(
       res=>{
         this.listesJurys.splice(this.listesJurys.indexOf(this.idJury),1);
+        this.toaster.success('Opération effectué avec succees');
+
       },
       err=>{
-        this.messageService.add({severity:'error', summary:'Confirmed', detail:'You have accepted'});
+        this.toaster.error('Erreur lors de la suppression');
       },
       ()=>{
         this.displayPosition1 = false;
-          this.messageService.add({severity:'info', summary:'Confirmed', detail:'supprimer avec succées'});
 
       }
 

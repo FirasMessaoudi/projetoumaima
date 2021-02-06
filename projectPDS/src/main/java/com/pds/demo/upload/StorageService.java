@@ -1,5 +1,5 @@
 package com.pds.demo.upload;
-
+import com.google.common.io.ByteStreams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,18 +61,23 @@ public class StorageService {
         }
     }
 
-    public Resource loadFile(String filename) {
+    public byte[] loadfile(String name) {
+        String filename = name.replace("%5C", "\\");
+        File f = new File(filename.trim());
+
+        FileInputStream input = null;
         try {
-            Path file = rootLocation.resolve(filename);
-            Resource resource = new UrlResource(file.toUri());
-            if (resource.exists() || resource.isReadable()) {
-                return resource;
-            } else {
-                throw new RuntimeException("FAIL!");
-            }
-        } catch (MalformedURLException e) {
-            throw new RuntimeException("FAIL!");
+            input = new FileInputStream(f);
+        } catch (FileNotFoundException e) {
+            log.error(e.getMessage());
         }
+        byte[] bytes = new byte[0];
+        try {
+            bytes = ByteStreams.toByteArray(input);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return bytes;
     }
 
 }

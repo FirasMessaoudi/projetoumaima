@@ -1,14 +1,14 @@
 
 <br><br><br>
 <p-accordion>
-  <p-accordionTab header="{{organisme.nom}}">
+  <p-accordionTab header="{{organisme?.nom}}">
     <div class="image-container">
-      <img [src]=organisme.imageOrganisme class="product-image"/>
+      <img [src]=organisme?.imageOrganisme class="product-image"/>
 </div>
 <div class="organisme-container">
-  <h3 class="p-mb-2">{{organisme.email}}</h3>
-  <h3 class="p-mb-2">{{organisme.gouvernerat}}</h3>
-  <h3 class="p-mb-2">{{organisme.adresse}}</h3>
+  <h3 class="p-mb-2">{{organisme?.email}}</h3>
+  <h3 class="p-mb-2">{{organisme?.gouvernerat}}</h3>
+  <h3 class="p-mb-2">{{organisme?.adresse}}</h3>
 </div>
   </p-accordionTab>
 </p-accordion>
@@ -44,11 +44,11 @@
       <h3> Postuler Maintenant! </h3>
 
       <div class="form">
-          <input   id="emailsociete" disabled="true" value={{organisme.email}} maxlength="50" name="form-name" type="text">
-          <input placeholder="votre email" maxlength="9" name="form-phone" type="text">
-          <input  maxlength="50" name="form-city" type="file">
+          <input   id="emailsociete" disabled="true" value={{organisme?.email}} maxlength="50" name="form-name" type="text">
+          <input placeholder="votre email" [(ngModel)]="sender" name="form-phone" type="text">
+          <input (change)="selectFile($event)"  maxlength="50" name="form-city" type="file">
 
-     <p-button> postuler</p-button>
+     <p-button (click)="postuler()"> postuler</p-button>
 
       </div>
 

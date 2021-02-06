@@ -1,4 +1,4 @@
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -28,7 +28,8 @@ export class RapportService {
 
     return this.httpclient.request(req);
   }
-  getFile(fileName: string): Observable<string> {
-    return this.httpclient.get<string>('http://localhost:8080/api/fileupload/files/' + fileName);
-  }
+  getFile(fileName: string, type: any) {
+    const headers2 = new HttpHeaders().set('Accept', type);
+    return this.httpclient.post('http://localhost:8080/api/fileupload/files/', fileName, {headers: headers2, responseType: 'blob'});
+}
 }

@@ -40,7 +40,7 @@ import { SuiviRapportComponent } from './suivi-rapport/suivi-rapport.component';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import { DetailOrganismeComponent } from './detail-organisme/detail-organisme.component';
 import {OrderListModule} from 'primeng/orderlist';
-
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -89,7 +89,9 @@ import {OrderListModule} from 'primeng/orderlist';
     DataViewModule,
     ReactiveFormsModule,
     ConfirmPopupModule,
-    OrderListModule
+    OrderListModule,
+    ToastrModule.forRoot(), // ToastrModule added
+
 
 
 

@@ -18,4 +18,7 @@ export class OrganismeServiceService {
   getOrganisme(id:number):Observable<Organisme>{
     return this.httpclient.get<Organisme>(this.URL+'/getOrganisme/'+id);
   }
+  sendCandidature(email:any):Observable<any>{
+    return this.httpclient.post<any>(this.URL+'/sendEmail',email);
+  }
 }
